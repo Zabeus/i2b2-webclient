@@ -59,7 +59,8 @@ i2b2.WORK.view.main.Resize = function(e){
 		} else {
 			var hz = parseInt((h - 321) / 2);
 			t.style.top = hz + 108;
-			$('wrkTreeview').style.height = hz + 8;
+//			$('wrkTreeview').style.height = hz + 8;
+			$('wrkTreeview').style.height = hz + 10; //swc20170918 further center this panel against the ones above & below it 
         }
         t.show();
 	} else {
@@ -94,7 +95,8 @@ i2b2.WORK.view.main.ResizeHeight = function(){
 		} else {
 			var hz = parseInt((h - 321) / 2);
 			t.style.top = hz + 108;
-			$('wrkTreeview').style.height = hz + 8;
+//			$('wrkTreeview').style.height = hz + 8;
+			$('wrkTreeview').style.height = hz + 10; //swc20170918 further center this panel against the ones above & below it 
         }
         t.show();
 	} else {
@@ -351,7 +353,7 @@ i2b2.WORK.view.main._generateTvNode = function(title, nodeData, parentNode){
                 var sdxDataNode = i2b2.sdx.Master.EncapsulateData('WRK', o);
                 var sdxRenderData = i2b2.sdx.Master.RenderHTML(parentNode.tree.id, sdxDataNode, {
                     'title': title,
-					'tooltip': 	nodeData.annotation.replace("\n","") // PARTIAL BUG-FIX: WEBCLIENT-98
+					'tooltip': 	nodeData.annotation.replace("\n","\nAnnotation: ") // PARTIAL BUG-FIX: WEBCLIENT-98
                 });
 				if (!sdxRenderData) { break; }
                 var renderObj = i2b2.sdx.Master.AppendTreeNode(parentNode.tree, parentNode, sdxRenderData);
@@ -604,12 +606,13 @@ i2b2.WORK.view.main.refreshTree = function() {
 		}
     }
     // -------------------------------------------------------
+	/*
     i2b2.WORK.view.main.ContextMenu = new YAHOO.widget.ContextMenu("divContextMenu-Workplace", {
 		zIndex: 5000,
         lazyload: true,
         trigger: $('wrkTreeview'),
         itemdata: []
-    });
+    });*/
 	
     i2b2.WORK.view.main.ContextMenu.subscribe("triggerContextMenu", i2b2.WORK.view.main.ContextMenuPreprocess);
     i2b2.WORK.view.main.ContextMenu.subscribe("beforeShow", i2b2.WORK.view.main.ContextMenuPreprocess);
