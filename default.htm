@@ -6,9 +6,9 @@
 <!--
  *  *************************
  *       i2b2 Web Client
- *           v1.7.09c
- *  ************************* 
- *  @modified: 11/16/17
+ *           v1.7.07
+ *  *************************
+ *  @modified: 01/11/16
  *  Contributors:
  *     Nick Benik
  *     Griffin Weber, MD, PhD
@@ -17,12 +17,11 @@
  *     David Wang
  *     Hannah Murphy
  *     Nich Wattanasin
- *     Bhaswati Ghosh
  *
  */-->
 
 <script type="text/javascript">
-	var i2b2build = "1.7.09c   [11/16/17 2:00 PM] ";
+	var i2b2build = "1.7.07   [01/11/16 1:00 PM] ";
 </script>
 
 <!-- LOAD YUI FROM Yahoo's CDN
@@ -150,11 +149,8 @@
 <!-- Load jquery code and turn off $ -->
 <link rel="stylesheet" type="text/css" href="assets/jquery.qtip.min.css" />
 
-<script type="text/javascript" src="js-ext/jquerycode/jquery-1.11.3.min.js"></script>
+<script src="js-ext/jquerycode/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="js-ext/jquery.qtip.min.js"></script>
-<script type="text/javascript" src="js-ext/jquerycode/jquery-ui.min.js"></script>
-<script type="text/javascript" src="js-ext/jquerycode/multiple-select.js"></script>
-<link type="text/css" href="js-ext/jquerycode/multiple-select.css" rel="stylesheet" />
 <script>
   var $j = $.noConflict(); 
 // Code that uses other library's $ can follow here.
@@ -162,7 +158,6 @@
 
 <!-- load i2b2 framework -->
 <script type="text/javascript" src="js-i2b2/i2b2_loader.js"></script>
-<script type="text/javascript" src="js-i2b2/i2b2_ui_config.js"></script>
 <link type="text/css" href="assets/i2b2.css" rel="stylesheet" />
 <link type="text/css" href="assets/i2b2-NEW.css" rel="stylesheet" />
 
@@ -318,7 +313,6 @@ function init() {
 
 	// initialize the i2b2 framework
 	initI2B2();
-	initI2B2_UI();
 }
 YAHOO.util.Event.addListener(window, "load", init);
 
@@ -405,7 +399,7 @@ YAHOO.util.Event.addListener(window, "load", init);
 </div>
 <table border="0" cellspacing="0" cellpadding="0" width="100%" id="topBarTable">
   <tr>
-    <td align="left" valign="middle"><img id="topBarTitle" border="0" alt="" /></td>
+    <td align="left" valign="middle"><img src="assets/images/title.gif" id="topBarTitle" border="0" alt="" /></td>
     <td align="left" valign="middle"><div id="viewMode-Project"></div></td>
     <td align="right" valign="middle"><div id="viewMode-User"></div></td>
     <td align="right" valign="middle"><div id="topBar" style="display:none;"> 
@@ -880,16 +874,7 @@ YAHOO.util.Event.addListener(window, "load", init);
         <div id="newBox"><a href="JavaScript:i2b2.CRC.ctrlr.QT.doQueryClear();">Clear</a></div>
         <div id="printQueryBox" style="visibility:hidden;"><a href="JavaScript:i2b2.CRC.ctrlr.QT.doPrintQuery();">Print Query</a></div>
         <div id="groupCount" style="width:75px;float:left;height:16px;overflow:hidden;"></div>
-<!--  
-        <div id="scrollBox"> 
--->
-        <div id="scrollBox" style="width:174; height:22"><!-- swc20170905 to fix clipping of the right-most edge --> 
-        	<a href="JavaScript:i2b2.CRC.ctrlr.QT.doScrollFirst();"><img id="panelScrollFirst" src="js-i2b2/cells/CRC/assets/QryTool_b_first_hide.gif" border="0" alt="Go First" /></a> 
-        	<a href="JavaScript:i2b2.CRC.ctrlr.QT.doScrollPrev();"><img id="panelScrollPrev" src="js-i2b2/cells/CRC/assets/QryTool_b_prev_hide.gif" border="0" alt="Go Previous" /></a> 
-        	<a href="JavaScript:i2b2.CRC.ctrlr.QT.doScrollNew();"><img src="js-i2b2/cells/CRC/assets/QryTool_b_newgroup.gif" border="0" alt="Add New" /></a> 
-        	<a href="JavaScript:i2b2.CRC.ctrlr.QT.doScrollNext();"><img id="panelScrollNext" src="js-i2b2/cells/CRC/assets/QryTool_b_next_hide.gif" border="0" alt="Go Next" /></a> 
-        	<a href="JavaScript:i2b2.CRC.ctrlr.QT.doScrollLast();"><img id="panelScrollLast" src="js-i2b2/cells/CRC/assets/QryTool_b_last_hide.gif" border="0" alt="Go Last" /></a> 
-        </div>
+        <div id="scrollBox"> <a href="JavaScript:i2b2.CRC.ctrlr.QT.doScrollFirst();"><img id="panelScrollFirst" src="js-i2b2/cells/CRC/assets/QryTool_b_first_hide.gif" border="0" alt="Go First" /></a> <a href="JavaScript:i2b2.CRC.ctrlr.QT.doScrollPrev();"><img id="panelScrollPrev" src="js-i2b2/cells/CRC/assets/QryTool_b_prev_hide.gif" border="0" alt="Go Previous" /></a> <a href="JavaScript:i2b2.CRC.ctrlr.QT.doScrollNew();"><img src="js-i2b2/cells/CRC/assets/QryTool_b_newgroup.gif" border="0" alt="Add New" /></a> <a href="JavaScript:i2b2.CRC.ctrlr.QT.doScrollNext();"><img id="panelScrollNext" src="js-i2b2/cells/CRC/assets/QryTool_b_next_hide.gif" border="0" alt="Go Next" /></a> <a href="JavaScript:i2b2.CRC.ctrlr.QT.doScrollLast();"><img id="panelScrollLast" src="js-i2b2/cells/CRC/assets/QryTool_b_last_hide.gif" border="0" alt="Go Last" /></a> </div>
       </div>
     </div>
   </div>
@@ -1057,7 +1042,7 @@ YAHOO.util.Event.addListener(window, "load", init);
         <input type="checkbox" id="ONTNAVshowShortTooltips" />
         Use Short Tooltips</div>
       <div style="margin-left:50px">
-        <input type="checkbox" id="ONTNAVshowCodeTooltips" onclick="$('ONTFINDshowCodeTooltips').checked = $('ONTNAVshowCodeTooltips').checked" />
+        <input type="checkbox" id="ONTNAVshowCodeTooltips" />
         Show Concept Codes in Tooltips</div>
       <div style="margin-left:50px">
         <input type="checkbox" id="ONTNAVdisableModifiers" />
@@ -1083,7 +1068,7 @@ YAHOO.util.Event.addListener(window, "load", init);
         <input type="checkbox" id="ONTFINDshowShortTooltips" />
         Use Short Tooltips</div>
       <div style="margin-left:50px">
-        <input type="checkbox" id="ONTFINDshowCodeTooltips" onclick="$('ONTNAVshowCodeTooltips').checked = $('ONTFINDshowCodeTooltips').checked"/>
+        <input type="checkbox" checked id="ONTFINDshowCodeTooltips" />
         Show Concept Codes in Tooltips</div>
       <div style="margin-left:50px">
         <input type="checkbox" id="ONTFINDdisableModifiers" />
@@ -1402,7 +1387,7 @@ YAHOO.util.Event.addListener(window, "load", init);
     <div class="bd"> <br />
       <div style="font-size:12px; margin-left:50px" >Please type a name for the query:</div>
       <div style="margin-left:50px">
-        <input id="inputQueryName" style="width:275px" maxlength="250" />
+        <input id="inputQueryName" style="width:275px" />
       </div>
     </div>
   </div>
@@ -1413,7 +1398,7 @@ YAHOO.util.Event.addListener(window, "load", init);
     <div class="bd"> <br />
       <div style="font-size:12px; margin-left:50px" >Please type a name for the query:</div>
       <div style="margin-left:50px">
-        <input class="inputQueryName" style="width:275px" maxlength="164" />
+        <input class="inputQueryName" style="width:275px" />
       </div>
       <div style="height:25px;"></div>
       <div style="font-size:12px; margin-left:50px" >Please check the query result type(s):</div>

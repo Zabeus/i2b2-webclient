@@ -114,22 +114,35 @@ i2b2.PM.model.IdleTimer.subscribe("idle", function(){
 // ================================================================================================== //
 i2b2.PM.model.html = {};
 i2b2.PM.model.html.loginDialog = '<div id="i2b2_login_modal_dialog" style="display:block;">\n'+
-	'	<div class="hd">'+i2b2.UI.cfg.loginHeaderText+'</div>\n'+
+	'	<div class="hd">i2b2 Login</div>\n'+
 	'	<div class="bd login-dialog">\n'+
 	'		<form name="loginForm" style="margin:0;padding:0;" onsubmit="i2b2.PM.doLogin(); return false;">\n'+
-	'			<div id="loginMessage">Login incorrect or host not found.</div>\n'+
+        '                       <div id="loginMessage">Login incorrect or host not found.</div>\n'+
+        '                       <div class="label">Enter your university or <a href="https://www.uth.edu/cphs/for-researchers/guest-account.htm">guest credentials</a> to continue.</div>\n'+
 	'			<div class="formDiv">\n'+
-	'				<div class="label">'+i2b2.UI.cfg.loginUsernameText+'</div>\n'+
-	'				<div class="input"><input type="text" name="uname" id="loginusr" value="'+i2b2.UI.cfg.loginDefaultUsername+'" size="20" maxlength="50" /></div>\n'+
-	'				<div class="label">'+i2b2.UI.cfg.loginPasswordText+'</div>\n'+
-	'				<div class="input"><input type="password" name="pword" id="loginpass" value="'+i2b2.UI.cfg.loginDefaultPassword+'" size="20" maxlength="50" /></div>\n'+
-	'				<div class="label">'+i2b2.UI.cfg.loginHostText+'</div>\n'+
-	'				<div class="input"><select name="server" id="logindomain"><option value="">Loading...</option></select></div>\n'+
-	'				<div class="button"><input type="button" value="  Login  " onclick="i2b2.PM.doLogin()" /></div>\n'+	
+	'				<div class="label">Username:</div>\n'+
+	'				<div class="input"><input type="text" name="username" id="loginusr" size="20" maxlength="50" /></div>\n'+
+	'				<div class="label">Password:</div>\n'+
+	'				<div class="input"><input type="password" name="password" id="loginpass" size="20" maxlength="50" /></div>\n'+
+	'				<div class="button"><input type="button" value="  Login  " onclick="i2b2.PM.doLogin()" /></div>\n'+
+        '                               <div style="display:none;"><div class="label">i2b2 Host:</div>\n'+
+        '                               <div class="input"><select name="server" id="logindomain"><option value="">Loading...</option></select></div></div>\n'+
+	'				<br><div class="label" style="color:red"><span id="errorMessage"></span></div>\n'+
 	'			</div>\n'+
 	'		</form>\n'+
 	'	</div>\n'+
 	'</div>\n';
+
+// error box
+i2b2.PM.model.html.errorDialog = '<div id="i2b2_error_modal_dialog" style="display:block;">\n'+
+        '       <div class="hd">Error</div>\n'+
+        '       <div class="bd error-dialog">\n'+
+        '                       <div id="loginMessage">An error occurred.</div>\n'+
+        '                       <div class="formDiv">\n'+
+        '                               <div class="button"><input type="button" value="OK" onclick="" /></div>\n'+
+        '                       </div>\n'+
+        '       </div>\n'+
+        '</div>\n';
 
 // project selection screen
 i2b2.PM.model.html.projDialog = '<div id="i2b2_projects_modal_dialog" style="display:block;">\n'+

@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<!-- js-i2b2 depends on this but doesn't include it -->
+<script type="text/javascript" src="js-ext/yui/build/yahoo/yahoo.js" ></script>
+<script type="text/javascript" src="js-ext/yui/build/event/event.js" ></script>
+<script type="text/javascript" src="js-ext/yui/build/dom/dom.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/yuiloader/yuiloader.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/dragdrop/dragdrop.js" ></script>
+<script type="text/javascript" src="js-ext/yui/build/element/element.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/container/container_core.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/container/container.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/resize/resize.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/utilities/utilities.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/menu/menu.js" ></script>
+<script type="text/javascript" src="js-ext/yui/build/calendar/calendar.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/treeview/treeview.js" ></script>
+<script type="text/javascript" src="js-ext/yui/build/tabview/tabview.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/animation/animation.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/datasource/datasource.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/yahoo-dom-event/yahoo-dom-event.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/json/json-min.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/datatable/datatable.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/button/button.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/paginator/paginator-min.js"></script>
+<script type="text/javascript" src="js-ext/yui/build/slider/slider-min.js"></script>
+<!-- and this -->
+<script type="text/javascript" src="js-ext/idle-timer.js"></script>
+<script type="text/javascript" src="js-ext/YUI_DataTable_PasswordCellEditor.js"></script>
+<script type="text/javascript" src="js-ext/YUI_DataTable_MD5CellEditor.js"></script>
+
+
+
+<!-- Load Moment.js for parsing and formatting date/time -->
+<script type="text/javascript" src="js-ext/moment.min.js"></script>
+<link type="text/css" href="js-i2b2/cells/CRC/assets/query_report.css" rel="stylesheet" />
+
+<style>
+ @import url(assets/mod-treeview.css);
+ @import url(assets/help_viewer.css);
+ @import url(assets/msg_sniffer.css);
+</style>
+
+<!--  External libraries -->
+<script type="text/javascript" src="js-ext/prototype.js"></script>
+<script type="text/javascript" src="js-ext/firebug/firebugx.js"></script>
+<script type="text/javascript" src="js-ext/excanvas.js"></script>
+
+<style>
+
+.myAccordion .yui-cms-accordion .yui-cms-item .bd .fixedbody {
+        background: none repeat scroll 0 0 #FFFFFF;
+        border: 1px solid #667788;
+        padding: 1px 5px;
+        height: 245px;
+}
+</style>
+
+<!-- Graphics Libraries (only work in IE9 and above) -->
+<!-- Load d3.js -->
+<script type="text/javascript" src="js-ext/d3code/d3.v3.js"></script>
+<!-- Load c3.js and stylesheet -->
+<link href="js-ext/c3code/c3.css" rel="stylesheet" type="text/css">
+<script src="js-ext/c3code/c3.js"></script>
+<!-- Load jquery code and turn off $ -->
+<link rel="stylesheet" type="text/css" href="assets/jquery.qtip.min.css" />
+
+<script src="js-ext/jquerycode/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="js-ext/jquery.qtip.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="jqwidgets/styles/jqx.base.css" type="text/css" />
+    <script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="scripts/demos.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function ()
+        {
+
+            // Create jqxButton widgets.
+            $("#jqxButton").jqxButton({ width: 120, height: 40 });
+            $("#jqxSubmitButton").jqxButton({ width: 120, height: 40 });
+            $("#jqxDisabledButton").jqxButton({ disabled: true, width: 120, height: 40 });
+            $("#jqxImageButton").jqxButton({ width: 120, height: 40, imgSrc: "../../images/facebook.png" });
+            $("#jqxTextImageButton").jqxButton({ width: 120, height: 40, textImageRelation: "imageBeforeText", textPosition: "left", imgSrc: "../../images/twitter.png" });
+            $("#jqxHTMLButton").jqxButton({ width: 120, height: 40 });
+
+            // Subscribe to Click events.
+            $("#jqxButton").on('click', function ()
+            {
+                $("#events").find('span').remove();
+                $("#events").append('<span>Button Clicked</span');
+            });
+
+            $("#jqxImageButton").on('click', function ()
+            {
+                $("#events").find('span').remove();
+                $("#events").append('<span>Image Button Clicked</span');
+            });
+
+            $("#jqxHTMLButton").on('click', function ()
+            {
+                $("#events").find('span').remove();
+                $("#events").append('<span>HTML Button Clicked</span');
+                $("#jqxHTMLButton").jqxButton({ value: "<span style='font-style: italic;'>Thanks for clicking me!</span>" });
+            });
+
+            $("#jqxTextImageButton").on('click', function ()
+            {
+                $("#events").find('span').remove();
+                $("#jqxTextImageButton").jqxButton({ textImageRelation: "textBeforeImage", imgPosition: "left", textPosition: "center" });
+                $("#events").append('<span>Text/Image Button Clicked</span');
+            });
+
+            $("#jqxSubmitButton").on('click', function ()
+            {
+                $("#events").find('span').remove();
+                $("#events").append('<span>Submit Button Clicked</span');
+            });
+
+        });
+    </script>
+
+<script>
+/*$(document).ready(function() {
+        $("#jqxButton").jqxButton({ width: 120, height: 40 });
+        $("#jqxButton").on('click', function ()
+            {
+                $("#events").find('span').remove();
+                $("#events").append('<span>Button Clicked</span');
+            });
+});*/
+
+  var $j = $.noConflict();
+// Code that uses other library's $ can follow here.
+
+</script>
+
+<!-- load i2b2 framework -->
+<script type="text/javascript" src="js-i2b2/i2b2_loader.js"></script>
+<link type="text/css" href="assets/i2b2.css" rel="stylesheet" />
+<link type="text/css" href="assets/i2b2-NEW.css" rel="stylesheet" />
+
+<!-- other auxiliary javascript source files -->
+<script type="text/javascript" src="js-i2b2/hive/hive.ui.js"></script>
+
+
+<script type="text/javascript">
+
+function initI2B2()
+{
+        //debugOnScreen("default.htm.initI2B2: browserViewPort = " + initBrowserViewPortDim.width + " " + initBrowserViewPortDim.height );
+        i2b2.events.afterCellInit.subscribe(
+                (function(en,co,a) {
+                        var cellObj = co[0];
+                        var cellCode = cellObj.cellCode;
+                        switch (cellCode) {
+                                case "PM":
+                                        // This i2b2 design implementation uses a prebuild login DIV we connect the Project Management cell to
+                                        // handle this method of login, the other method used for login is the PM Cell's built in floating
+                                        // modal dialog box to prompt for login credentials.  You can edit the look and feel of this dialog box
+                                        // by editing the CSS file.  You can remark out the lines below with no ill effect.  Use the following
+                                        // javascript function to display the modal login form: i2b2.hive.PM.doLoginDialog();
+                                        //cellObj.doConnectForm($('loginusr'),$('loginpass'),$('logindomain'), $('loginsubmit'));
+                                        i2b2.PM.doLoginDialog();
+                                        break;
+                        }
+                })
+        );
+
+
+        i2b2.events.afterHiveInit.subscribe(
+                (function(ename) {
+                        // Misc GUI actions that need to be done after loading
+                        $('QPD1').style.background = '#FFFFFF';
+                        $('queryBalloon1').style.display = 'block';
+                })
+        );
+
+        i2b2.events.afterLogin.subscribe(
+                (function()
+                {
+                        // after successful login hide the login box and display the application GUI
+                        $('topBar').style.display = 'block';
+                        $('screenQueryData').style.display = 'block';
+                        var splitterName = 'main.splitter';
+
+                        // update dimension values
+                        initBrowserViewPortDim = document.viewport.getDimensions();
+                        rightSideWidth = initBrowserViewPortDim.width * rightSideProportion;    // this component will take up 60% of the screen
+
+                        if (i2b2.PM.model.admin_only)
+                        {
+                                i2b2.hive.MasterView.setViewMode('Admin');
+                                $('viewMode-Patients').style.display = 'none';
+                                $('viewMode-Analysis').style.display = 'none';
+                                if(typeof i2b2.PM.model.installer_path !== "undefined"){
+                                        $('adminPlugins').show();
+                                }
+                                // hide the splitter from view since we don't need it in admin-only mode
+                                var splitter = $( splitterName );
+                                splitter.style.visibility="hidden";
+                        }
+                        else
+                        {
+                                // create the splitter object only after login and not in admin-only mode
+                                i2b2.hive.mySplitter = new Splitter(splitterName, {cont: 'screenQueryData'});
+                                i2b2.hive.MasterView.initViewMode(); //tdw9
+
+                                jQuery('#pluginsMenu').qtip({
+                                        content: {
+                                                text: jQuery('#PluginListBox')
+                                        },
+                                        style: {
+                                                width:500
+                                        },
+                                        show: 'click',
+                                        position: {
+                                                my: 'top right',  // Position my top left...
+                                                at: 'bottom left', // at the bottom right of...
+                                        },
+                                        hide: 'unfocus click'
+
+                                });
+                                i2b2.PLUGINMGR.view.list.BuildCategories();
+                                i2b2.PLUGINMGR.view.list.Render();
+
+                        }
+                        $('viewMode-Project').innerHTML = "Project: " + i2b2.PM.model.login_projectname;
+                        $('viewMode-User').innerHTML = "User: " + i2b2.PM.model.login_fullname;
+                        $('viewMode-User').title = i2b2.PM.model.userRoles;
+                        if (i2b2.PM.model.otherAuthMethod) { $('changePasswordLink').hide(); }
+                        if (i2b2.PM.model.login_debugging) { $('debugMsgSniffer').show(); }
+                        if(typeof i2b2.PM.model.installer_path !== "undefined"){
+                                $('PluginGalleryFooter').show();
+                        }
+                        if (i2b2.PM.model.isAdmin){
+                                $('PluginsGalleryLink').innerHTML = "Click here to install plugins from i2b2 Gallery...";
+                        }
+                }), i2b2
+        );
+
+        // start the i2b2 framework
+        i2b2.Init();
+}
+
+function init() {
+        // ------------------------------------------------------
+        // put any pre-i2b2 initialization code here
+        // ------------------------------------------------------
+
+        // initialize the i2b2 framework
+        initI2B2();
+}
+</script>
+
+
+</head>
+<body onload="" class='default'>
+<!-- needed by hive -->
+<div class="pageMask" id="topMask" style="display:none;">&nbsp;</div>
+
+<!-- pluglstZoomImg needed by pluginmgr -->
+<a href="JavaScript:i2b2.PLUGINMGR.view.list.ZoomView();"><img id="pluglstZoomImg" width="16" height="16" border="0" src="js-i2b2/cells/CRC/assets/zoom_icon.gif" alt="Resize Workspace" /></a>
+<!-- plugviewZoomImg needed by pluginmgr -->
+<a href="JavaScript:showXML('PLUGINMGR','PlugView','Stack');" class="debug"><img src="assets/images/msg_stack.gif" border="0" width="16" height="16"  alt="Show XML Message Stack" title="Show XML Message Stack" /></a> <a href="JavaScript:i2b2.PLUGINMGR.view.PlugView.showOptions();"><img src="assets/images/options.gif" border="0" width="16" height="16" alt="Show Options" title="Show Options" /></a> <a href="JavaScript:i2b2.PLUGINMGR.ctrlr.main.ZoomView();"><img id="plugviewZoomImg" width="16" height="16" border="0" src="js-i2b2/cells/PLUGINMGR/assets/zoom_icon.gif" alt="Resize Workspace" title="Resize Workspace" /></a>
+
+<!-- needed by CRC -->
+<div id="crcHistoryBox" style="display:none;"></div>
+<!-- needed by CRC -->
+<div style="border: 1px solid rgb(171, 173, 179); height:100px; overflow:auto; margin-left: 50px; width: 275px; padding: 4px" id="dialogQryRunResultType"></div>
+
+<!-- instantiate ontology widget -->
+<div id="screenQueryData" style="display:none">
+  <div id="ontMainBox" style="display:none">
+    <div id="ontMainDisp">
+      <div id="ontNavDisp">
+        <div id="ontNavResults"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<div>
+   <input type="button" value="Button" id='jqxButton' />
+   <div style='font-size: 12px; font-family: Verdana; margin-top: 10px;'>
+        <div>Events:</div>
+        <div id='events'>
+        </div>
+   </div>
+</div>-->
+
+    <div>
+        <input type="button" value="Button" id='jqxButton' />
+    </div>
+    <div>
+        <input style='margin-top: 20px;' type="submit" value="Submit" id='jqxSubmitButton' />
+    </div>
+    <div>
+        <input style='margin-top: 20px;' type="button" id='jqxImageButton' />
+    </div>
+    <div>
+        <input style='margin-top: 20px;' value="Button" type="button" id='jqxTextImageButton' />
+    </div>
+    <div>
+        <input style='margin-top: 20px;' value="<span style='font-weight: bold;'>HTML Button</span>" type="button" id='jqxHTMLButton' />
+    </div>
+    <div>
+        <input style='margin-top: 20px;' type="Button" value="Disabled" id='jqxDisabledButton' />
+    </div>
+    <div style='font-size: 12px; font-family: Verdana; margin-top: 10px;'>
+        <div>Events:</div>
+        <div id='events'>
+        </div>
+    </div>
+</body>
+</html>

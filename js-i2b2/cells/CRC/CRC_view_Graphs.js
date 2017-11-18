@@ -38,10 +38,10 @@ var msStringDefineingNumberOfPatients = "number of patients";  // this constant 
 
 i2b2.CRC.view.graphs = new i2b2Base_cellViewController(i2b2.CRC, 'graphs');
 i2b2.CRC.view.graphs.visible = false;
-i2b2.CRC.view.graphs.iObfuscatedFloorNumber = i2b2.UI.cfg.obfuscatedDisplayNumber;  // this is the amount reported that the numbers are obfuscated by
-i2b2.CRC.view.graphs.sObfuscatedText = "<"+i2b2.UI.cfg.obfuscatedDisplayNumber.toString();  // this is the text that is replaced for a small number in obfuscated mode
+i2b2.CRC.view.graphs.iObfuscatedFloorNumber = 3;  // this is the amount reported that the numbers are obfuscated by
+i2b2.CRC.view.graphs.sObfuscatedText = "<3";  // this is the text that is replaced for a small number in obfuscated mode
 //                            so that it can be cleaned up before the next display
-i2b2.CRC.view.graphs.sObfuscatedEnding = "&plusmn;"+i2b2.UI.cfg.obfuscatedDisplayNumber.toString();  //this is the text that is added to all numbers in obfuscated mode
+i2b2.CRC.view.graphs.sObfuscatedEnding = "&plusmn;3";  //this is the text that is added to all numbers in obfuscated mode
 i2b2.CRC.view.graphs.bIsSHRINE = false;  // this changes the way the graphs are made if the file is being run in SHRINE mode
 //                            NOTE THAT THIS IS DEMO ONLY IN THIS VERSION - IT DOES NOT REALLY WORK
 i2b2.CRC.view.graphs.asTitleOfShrineGroup = ["patient age count breakdown", "patient gender count breakdown", "patient race count breakdown", 
@@ -145,7 +145,6 @@ try {
 		graph_multiplesite_patient_number("chart0", asUniqueBreakdownTypes[0], asInputArray);
 		for (var i=1; i<asUniqueBreakdownTypes.length; i++){
 			graph_multiplesite_patient_breakdown("chart"+i, asUniqueBreakdownTypes[i], asInputArray);
-			document.getElementById('chart'+i).style.maxHeight = '236px';//swc20171025 added to prevent x-axis label clipping			
 		}		
      }
 	
@@ -491,8 +490,7 @@ try {
 		bindto: '#' + sDivName,
 		size: { 
 			//width: 535,
-//			height: 146
-			height: 196 //swc20171025 updated to prevent x-axis label clipping
+			height: 146
 		},
 		data: {
 			x: 'x',
@@ -505,11 +503,6 @@ try {
                 labels: {
                     format: {
                         y: function (v, id) {
-							if(i2b2.UI.cfg.useFloorThreshold){
-								if (v < i2b2.UI.cfg.floorThresholdNumber){
-									return i2b2.UI.cfg.floorThresholdText + i2b2.UI.cfg.floorThresholdNumber.toString();
-								}
-							}
 							if (i2b2.PM.model.isObfuscated) {
 								if(v == 0){
 									return i2b2.CRC.view.graphs.sObfuscatedText;
@@ -531,12 +524,9 @@ try {
 			x: {
 				type: 'category',
 				tick: {
-//					rotate: 25
-					rotate: -45,//swc20171027 updated to improve readability
-					multiline: false //swc20171027 added to improve readability (prevents random wrapping of labels)
+					rotate: 25
 				},
-//				height: 45
-				height: 95 //swc20171025 updated to prevent x-axis label clipping
+				height: 45
 			},
 			y: {
 				label: {
@@ -595,8 +585,7 @@ try {
 		bindto: '#' + sDivName,
 		size: { 
 			width: 535,
-//			height: 146
-			height: 196 //swc20171025 updated to prevent x-axis label clipping
+			height: 146
 		},
 		data: {
 			columns: c3values,
@@ -616,12 +605,9 @@ try {
 			x: {
 				type: 'category',
 				tick: {
-//					rotate: 25
-					rotate: -45,//swc20171027 updated to improve readability
-					multiline: false //swc20171027 added to improve readability (prevents random wrapping of labels)
+					rotate: 25
 				},
-//				height: 45
-				height: 95 //swc20171025 updated to prevent x-axis label clipping
+				height: 45
 			},
 			y: {
 				label: {
@@ -760,8 +746,7 @@ try {
 		bindto: '#' + sDivName,
 		size: { 
 			width: 535,
-//			height: 146
-			height: 196 //swc20171025 updated to prevent x-axis label clipping
+			height: 146
 		},
 		data: {
 			x: 'x',
@@ -780,12 +765,9 @@ try {
 			x: {
 				type: 'category',
 				tick: {
-//					rotate: 25
-					rotate: -45,//swc20171027 updated to improve readability
-					multiline: false //swc20171027 added to improve readability (prevents random wrapping of labels)
+					rotate: 25
 				},
-//				height: 45
-				height: 95 //swc20171025 updated to prevent x-axis label clipping
+				height: 45
 			},
 			y: {
 				label: {
@@ -878,11 +860,6 @@ try {
 	else {
 		iValue = sValue;
 	}
-	if(i2b2.UI.cfg.useFloorThreshold){
-		if (sValue.trim() == i2b2.UI.cfg.floorThresholdText + i2b2.UI.cfg.floorThresholdNumber.toString()){
-			iValue = "0";
-		}
-	}
 	function isNumber(obj) {return ! isNaN(obj-0) && obj; };
 	if (!isNumber(iValue)) {
 		iValue = "undefined #";
@@ -907,7 +884,6 @@ try {
 		return sValue;
 	}
 	function isNumber(obj) {return ! isNaN(obj-0) && obj; };
-
 	if (!isNumber(iValue)) {
 		sValue = "undefined";
 		return sValue;
@@ -923,11 +899,6 @@ try {
 			sValue = i2b2.CRC.view.graphs.sObfuscatedText;
 		} else {
 			sValue = iValue;
-		}
-	}
-	if(i2b2.UI.cfg.useFloorThreshold){
-		if(iValue < i2b2.UI.cfg.floorThresholdNumber){
-			sValue = i2b2.UI.cfg.floorThresholdText + i2b2.UI.cfg.floorThresholdNumber.toString()
 		}
 	}
 	return sValue;

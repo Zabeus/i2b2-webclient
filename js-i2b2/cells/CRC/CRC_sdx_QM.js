@@ -232,10 +232,9 @@ i2b2.sdx.TypeControllers.QM.getChildRecords = function(sdxParentNode, onComplete
 			o.end_date = i2b2.h.getXNodeVal(qi[i1],'end_date');
 			o.query_status_type = i2b2.h.getXNodeVal(qi[i1],'query_status_type');
 			o.title = "Results of " + pn.origData.name;
-			if(typeof o.batch_mode === "undefined"){ // CRC is below version 1.7.07
+			if (i2b2.h.getXNodeVal(qi[i1],'description') != "COMPLETED")
+			{
 				o.title += " - " + i2b2.h.getXNodeVal(qi[i1],'description');
-			} else { // CRC is version 1.7.08 or newer
-				o.title += " - " + o.batch_mode;
 			}
 			var sdxDataNode = i2b2.sdx.Master.EncapsulateData('QI',o);
 			// append to the QI record onto the QM in CRC data model

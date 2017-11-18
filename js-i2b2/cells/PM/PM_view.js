@@ -426,6 +426,22 @@ i2b2.PM.doLoginDialog = function() {
 			// load the domains
 			i2b2.PM._redrawConnectedForm();
 		}
+		/*if (!i2b2.PM.view.modal.error) {
+                        i2b2.PM.view.modal.error = new YAHOO.widget.Panel("i2b2_error_modal_dialog", {
+                                zindex: 700,
+                                width: "501px",
+                                fixedcenter: true,
+                                constraintoviewport: true,
+                                close: true,
+                                draggable: true
+                        });
+                        i2b2.PM.view.modal.error.render(document.body);
+
+                        // show the form
+                        i2b2.PM.view.modal.error.show();
+                }*/
+
+
 	}
 	// show the form
 	i2b2.PM.view.modal.login.show();

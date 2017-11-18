@@ -94,6 +94,12 @@ i2b2.PM.doLogin = function() {
 
 }
 
+i2b2.PM._noUserError = function() {
+	errHtml = "Your account does not have access to any i2b2 projects. Please email <a href=\"mailto:Susan.C.Guerrero@uth.tmc.edu&subject=i2b2 Access Request\">Susan.C.Guerrero@uth.tmc.edu</a> with your access request.";
+
+	//i2b2.PM.view.modal.error.show();
+	jQuery('#errorMessage').html(errHtml);
+}
 
 // ================================================================================================== //
 i2b2.PM._processUserConfig = function (data) {
@@ -138,6 +144,7 @@ i2b2.PM._processUserConfig = function (data) {
 	}	
 	// clear the password
 	i2b2.PM.udlogin.inputPass.value = "";
+	jQuery('#errorMessage').html("");
 	
 	if (i2b2.PM.model.reLogin) {
 		i2b2.h.LoadingMask.hide();
@@ -242,12 +249,15 @@ i2b2.PM._processUserConfig = function (data) {
 		if (s.length > 0) {
 			// we have a proper error msg
 			try {
-					alert("ERROR: "+s[0].firstChild.nodeValue);				
+				if(s[0].firstChild.nodeValue == "Username does not exist")
+					i2b2.PM._noUserError();
+				else
+					alert("ERROR: "+s[0].firstChild.nodeValue);
 			} catch (e) {
 				alert("An unknown error has occured during your login attempt!");
 			}
 		} else if (i2b2.PM.model.login_fullname != "") {
-			alert("Your account does not have access to any i2b2 projects.");		
+			i2b2.PM._noUserError();
 		//} else if (s == null || s == "") {
 		//	alert("The PM Cell is down or the address in the properties file is incorrect.");	
 		} else {
@@ -663,14 +673,14 @@ i2b2.PM._processLaunchFramework = function() {
 			delete i2b2[cellKey];
 		}
 	}
-/* Legacy SHRINE code - Removed 6/3/16
+
 	// see if Shrine was loaded by the server
 	var t = i2b2.hive.cfg.lstCells["SHRINE"];
 	if (!Object.isUndefined(t) && t.serverLoaded) {
 		i2b2.PM.model.shrine_domain = true;
 	}
 	delete t;
-*/
+
 
 	// create a list of valid Cells that are loaded for this session
 	var t = {};

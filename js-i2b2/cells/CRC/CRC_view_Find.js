@@ -21,7 +21,6 @@ i2b2.CRC.view.find.showOptions = function(subScreen){
 		var handleSubmit = function(){
 			// submit value(s)
 			if (this.submit()) {
-				$('HISTMaxQryDisp').style.border = "2px inset";
 				if ($('HISTsortOrderASC').checked) {
 					tmpValue = 'ASC';
 				}
@@ -64,15 +63,11 @@ i2b2.CRC.view.find.showOptions = function(subScreen){
 		this.modalOptions.validate = function(){
 			// now process the form data
 			var tmpValue = parseInt($('HISTMaxQryDisp').value, 10);
-			var value = $('HISTMaxQryDisp').value;
-			if(!isNaN(value) && parseInt(Number(value)) == value && !isNaN(parseInt(value, 10)) && value >=0){
-				$('HISTMaxQryDisp').style.border = "2px inset";
-				return true;
-			} else {
+			if (!isNaN(tmpValue) && tmpValue <= 0) {
 				alert("The max number of Queries must be a whole number larger then zero.");
-				$('HISTMaxQryDisp').style.border = "2px inset red";
 				return false;
 			}
+			return true;
 		};
 		this.modalOptions.render(document.body);
 	} 
@@ -182,7 +177,7 @@ i2b2.CRC.view.find.PopulateQueryMasters = function(dm_ptr, dm_name, options) {
 
 // ================================================================================================== //
 i2b2.CRC.view.find.ZoomView = function() {
-	i2b2.hive.MasterView.toggleZoomWindow("FIND");
+	i2b2.hive.MasterView.toggleZoomWindow("HISTORY");
 }
 
 
@@ -190,12 +185,12 @@ i2b2.CRC.view.find.ZoomView = function() {
 // ================================================================================================== //
 i2b2.CRC.view.find.doRename = function() { 
 	var op = i2b2.CRC.view.find.contextRecord; // object path
-	i2b2.CRC.ctrlr.find.queryRename(op.sdxInfo.sdxKeyValue, false, op); 
+	i2b2.CRC.ctrlr.history.queryRename(op.sdxInfo.sdxKeyValue, false, op); 
 }
 
 // ================================================================================================== //
 i2b2.CRC.view.find.doDelete = function() { 
-	i2b2.CRC.ctrlr.find.queryDelete(i2b2.CRC.view.find.contextRecord.sdxInfo.sdxKeyValue); 
+	i2b2.CRC.ctrlr.history.queryDelete(i2b2.CRC.view.find.contextRecord.sdxInfo.sdxKeyValue); 
 }
 
 // ================================================================================================== //
@@ -247,12 +242,12 @@ i2b2.events.afterCellInit.subscribe(
 				thisview.yuiTree = new YAHOO.widget.TreeView("crcSearchNamesResults");
 				thisview.yuiTree.setDynamicLoad(i2b2.sdx.Master.LoadChildrenFromTreeview,1);
 				// register the treeview with the SDX subsystem to be a container for QM, QI, PRS, PRC objects
-				i2b2.sdx.Master.AttachType("crcFindData","QM");
-				i2b2.sdx.Master.AttachType("crcFindData","QI");
-				i2b2.sdx.Master.AttachType("crcFindData","ENS");
-				i2b2.sdx.Master.AttachType("crcFindData","PRC");
-				i2b2.sdx.Master.AttachType("crcFindData","PRS");
-				i2b2.sdx.Master.AttachType("crcFindData","PR");
+				i2b2.sdx.Master.AttachType("crcHistoryData","QM");
+				i2b2.sdx.Master.AttachType("crcHistoryData","QI");
+				i2b2.sdx.Master.AttachType("crcHistoryData","ENS");
+				i2b2.sdx.Master.AttachType("crcHistoryData","PRC");
+				i2b2.sdx.Master.AttachType("crcHistoryData","PRS");
+				i2b2.sdx.Master.AttachType("crcHistoryData","PR");
 
 			}
 			// we need to make sure everything is loaded
@@ -261,7 +256,7 @@ i2b2.events.afterCellInit.subscribe(
 // -------------------------------------------------------
 			i2b2.CRC.ctrlr.find.events.onDataUpdate.subscribe(
 				(function(en,co) {
-					console.group("[EVENT CAPTURED i2b2.CRC.ctrlr.find.events.onDataUpdate]");
+					console.group("[EVENT CAPTURED i2b2.CRC.ctrlr.history.events.onDataUpdate]");
 					console.dir(co[0]);
 					var dm_loc = co[0].DataLocation;
 					var dm_ptr = co[0].DataRef;
@@ -286,7 +281,7 @@ i2b2.events.afterCellInit.subscribe(
 // -------------------------------------------------------
 		
 			i2b2.CRC.view.find.ContextMenu = new YAHOO.widget.ContextMenu( 
-					"divContextMenu-CRCFind",  
+					"divContextMenu-Find",  
 					{ lazyload: true,
 					trigger: $('crcFindDisp'), 
 					itemdata: [

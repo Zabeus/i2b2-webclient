@@ -6,7 +6,7 @@
 	config: {
 		// additional configuration variables that are set by the system
 		short_name: "Communicator Tool",
-		name: "Development Example #4 - Communicator Tool",
+		name: "Example #5 - Communicator Tool",
 		description: "This plugin allows you to interact directly with standard Cell Communicator objects within the web client framework.",
 		category: ["celless","plugin","examples"],
 		plugin: {

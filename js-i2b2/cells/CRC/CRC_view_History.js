@@ -20,38 +20,26 @@ i2b2.CRC.view.history.showOptions = function(subScreen){
 	if (!this.modalOptions) {
 		var handleSubmit = function(){
 			// submit value(s)
-			var value = $('HISTMaxQryDisp').value;
-			if(!isNaN(value) && parseInt(Number(value)) == value && !isNaN(parseInt(value, 10))){
-				if(parseInt(value, 10) > 0){
-					if (this.submit()) {
-						if ($('HISTsortOrderASC').checked) {
-							tmpValue = 'ASC';
-						}
-						else {
-							tmpValue = 'DESC';
-						}
-						i2b2.CRC.view['history'].params.sortOrder = tmpValue;
-						if ($('HISTsortByNAME').checked) {
-							tmpValue = 'NAME';
-						}
-						else {
-							tmpValue = 'DATE';
-						}
-						i2b2.CRC.view['history'].params.sortBy = tmpValue;
-						tmpValue = parseInt($('HISTMaxQryDisp').value, 10);
-						i2b2.CRC.view['history'].params.maxQueriesDisp = tmpValue;
-						// requery the history list
-						i2b2.CRC.ctrlr.history.Refresh();
-					}
-				} else {
-					alert('Please enter number greater than 0 for Maximum Children to Display.');
-					$('HISTMaxQryDisp').style.border = "2px inset red";
+			if (this.submit()) {
+				if ($('HISTsortOrderASC').checked) {
+					tmpValue = 'ASC';
 				}
-			} else {
-				alert('Please enter a valid number for Maximum Queries to Display.');
-				$('HISTMaxQryDisp').style.border = "2px inset red";
+				else {
+					tmpValue = 'DESC';
+				}
+				i2b2.CRC.view['history'].params.sortOrder = tmpValue;
+				if ($('HISTsortByNAME').checked) {
+					tmpValue = 'NAME';
+				}
+				else {
+					tmpValue = 'DATE';
+				}
+				i2b2.CRC.view['history'].params.sortBy = tmpValue;
+				tmpValue = parseInt($('HISTMaxQryDisp').value, 10);
+				i2b2.CRC.view['history'].params.maxQueriesDisp = tmpValue;
+				// requery the history list
+				i2b2.CRC.ctrlr.history.Refresh();
 			}
-			
 		}
 		var handleCancel = function(){
 			this.cancel();
@@ -75,15 +63,11 @@ i2b2.CRC.view.history.showOptions = function(subScreen){
 		this.modalOptions.validate = function(){
 			// now process the form data
 			var tmpValue = parseInt($('HISTMaxQryDisp').value, 10);
-			var value = $('HISTMaxQryDisp').value;
-			if(!isNaN(value) && parseInt(Number(value)) == value && !isNaN(parseInt(value, 10))){
-				$('HISTMaxQryDisp').style.border = "2px inset";
-				return true;
-			} else {
+			if (!isNaN(tmpValue) && tmpValue <= 0) {
 				alert("The max number of Queries must be a whole number larger then zero.");
-				$('HISTMaxQryDisp').style.border = "2px inset red";
 				return false;
 			}
+			return true;
 		};
 		this.modalOptions.render(document.body);
 	} 
